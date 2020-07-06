@@ -1,0 +1,16 @@
+{% extends "parent.html" %} {% block content %}
+<h2>Oblicz wartość wymiany waluty po aktualnym kursie NBP</h2>
+
+<form action="{{ url_for('currency_calc') }}" method="POST">
+  <label for="name">Wybierz walutę:</label>
+  <select name="currency" id="currency">
+    {% for item in items %}
+    <option value="{{item}}">{{item}}</option>
+    {% endfor %}
+  </select>
+  <br /><br />
+  <label for="name">Wprowadź ilość kupowanej waluty:</label>
+  <input type="text" id="currency_count" name="currency_count" />
+  <input type="submit" value="Przelicz" />
+</form>
+{% endblock %}
