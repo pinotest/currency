@@ -41,7 +41,7 @@ def get_currency_exchange(currency_code, currency_count):
     currency_exchange = 0
     try:
         currency_exchange = float(currency_rate) * float(currency_count)
-    except:
+    except ValueError:
         print("Niestety to nie jest poprawna ilość: ", currency_count)
 
     return currency_exchange
