@@ -43,7 +43,15 @@ def get_currency_exchange(currency_code, currency_count):
         currency_exchange = float(currency_rate) * float(currency_count)
     except:
         print("Niestety to nie jest poprawna ilość: ", currency_count)
+
     return currency_exchange
+
+
+@app.route("/get_currency", methods=["POST"])
+def get_currency():
+    save_currency_file()
+    currency_code = get_currency_code()
+    return render_template("currency.html", items=currency_code)
 
 
 @app.route("/currency_calc/", methods=["GET", "POST"])
@@ -57,7 +65,7 @@ def currency_calc():
         curr_value = get_currency_exchange(
             selected_currency_code, currency_count)
         curr_value = locale.format_string('%.2f', curr_value, True)
-        return render_template("currency_pay.html", items=currency_code, curr_value=curr_value)
+        return render_template("currency_pay.html", items=currency_code, curr_value=curr_value, selected_currency_code=selected_currency_code, currency_count=currency_count)
 
 
 if __name__ == "__main__":
