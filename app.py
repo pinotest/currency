@@ -38,7 +38,7 @@ def get_currency_rate(currency_code):
 
 def get_currency_exchange(currency_code, currency_count):
     currency_rate = get_currency_rate(currency_code)
-    currency_exchange = 0
+    currency_exchange = None
     try:
         currency_exchange = float(currency_rate) * float(currency_count)
     except ValueError:
@@ -64,7 +64,8 @@ def currency_calc():
         selected_currency_code = request.form['currency']
         curr_value = get_currency_exchange(
             selected_currency_code, currency_count)
-        curr_value = locale.format_string('%.2f', curr_value, True)
+        if curr_value != None:
+            curr_value = locale.format_string('%.2f', curr_value, True)
         return render_template("currency_pay.html", items=currency_code, curr_value=curr_value, selected_currency_code=selected_currency_code, currency_count=currency_count)
 
 
