@@ -1,4 +1,12 @@
- {% block content %}
-{%include 'currency.html'%}
- <br>Za {{currency_count}} {{selected_currency_code}} zapłacisz: {{curr_value}} PLN</br>
-{% endblock %}
+{% block content %} {%include 'currency.html'%} {% if curr_value ==None %}
+<p class="errormassage">Niestety, wprowadzono niepoprawną ilość!!!</p>
+{% elif curr_value =='0,00' %}
+<p class="errormassage">
+  To chcesz coś przeliczyć czy nie? Ilość 0 nie da sensownego wyniku.
+</p>
+
+{% else %}
+<p>
+  Za {{currency_count}} {{selected_currency_code}} zapłacisz: {{curr_value}} PLN
+</p>
+{% endif %} {% endblock %}
