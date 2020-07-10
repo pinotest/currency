@@ -1,0 +1,13 @@
+h1 {
+  font-weight: bold;
+}
+p {
+  color: black;
+}
+ul {
+  color: green;
+}
+.errormassage {
+  color: red;
+  font-weight: bold;
+}
